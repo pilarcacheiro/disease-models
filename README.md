@@ -11,7 +11,7 @@ shiny::runGitHub("disease-models", "pilarcacheiro")
 
 Or clone or download this repository and run:
 ```
-shiny::runApp("disease-models").
+shiny::runApp("disease-models")
 ```
 
 The following addtional packages are required:

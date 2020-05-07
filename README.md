@@ -22,8 +22,8 @@ if (!require('networkD3')) install.packages('networkD3')
 if (!require('tidyverse')) install.packages('tidyverse')
 ```
 ### Mouse models disease table
-These tables contain information on all the IMPC mouse models for a given gene, the human orthologues and the associated disorders along with the phenotyic similarity between each mouse model and the disease as computed by the PhenoDigm algorithm . PhenoDigm relies on the availability of mouse phenotypes encoded as Mammalian Phenotype Ontology (MP) tems and human disease phenotypes encoded as Human Phenotype Ontology (HPO) terms.
-PhenoDigm score = 0 means that there are no phenotypes in common between the mouse model and the disease.
+These tables contain information on all the IMPC mouse models for a given gene, the human orthologues and the associated disorders along with the phenotypic similarity between each mouse model and the disease as computed by the PhenoDigm algorithm . PhenoDigm relies on the availability of mouse phenotypes encoded as Mammalian Phenotype Ontology (MP) terms and human disease phenotypes encoded as Human Phenotype Ontology (HPO) terms.
+A PhenoDigm score = 0 means that there are no phenotypes in common between the mouse model and the disease.
 Methods and data sources available in [[Cacheiro et al., 2019]](https://link.springer.com/article/10.1007/s00335-019-09804-5)
 
 ### Gene summary table

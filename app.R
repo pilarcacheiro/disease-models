@@ -1,7 +1,7 @@
 ######################################################################################################################
 # IMPC Disease models shiny app
 # Current version DR11.0
-# Last update: 01/05/2020
+# Latest update: 07/05/2020
 ######################################################################################################################
 
 # Required pacakges
@@ -127,7 +127,7 @@ server <- function(input, output) {
       return()
     
     
-    link = data.frame(source=c("Disease genes (1,706)","Disease genes (1,706)", "HPO annotations (1,590)", 
+    links = data.frame(source=c("Disease genes (1,706)","Disease genes (1,706)", "HPO annotations (1,590)", 
                                "HPO annotations (1,590)"), 
                       target=c("No HPO annotations (116)","HPO annotations (1,590)","PhenoDigm match (715)",
                                "No PhenoDigm match (875)"), 

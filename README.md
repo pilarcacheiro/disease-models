@@ -6,7 +6,7 @@ Run the app locally:
 
 ```
 if (!require('shiny')) install.packages("shiny")
-libary(shiny)
+library(shiny)
 shiny::runGitHub("disease-models", "pilarcacheiro")
 ```
 

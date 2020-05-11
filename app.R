@@ -62,7 +62,7 @@ ui <- fluidPage(
       
       ## Action Button
       
-      actionButton("showPlot", "Show Sankey diagram DR11.0 summary"),
+      actionButton("showPlot", "Show Sankey diagram DR11.0 summary")
       
     ),
     

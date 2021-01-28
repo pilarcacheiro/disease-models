@@ -4,7 +4,7 @@
 # Latest update: 11/05/2020
 ######################################################################################################################
 
-# Required pacakges
+# Required packages
 
 library(shiny)
 library(DT)

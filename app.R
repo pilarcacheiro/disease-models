@@ -1,7 +1,7 @@
 ######################################################################################################################
-# IMPC Disease models shiny app
+# IMPC Disease models Shiny app
 # Current version DR11.0
-# Latest update: 11/05/2020
+# Latest update: 01/11/2022
 ######################################################################################################################
 
 # Required packages
@@ -14,9 +14,9 @@ library(networkD3)
 
 # Import datasets
 
-allmodels <-  read.delim("data/dr11.gene.ortholog.model.disease.score.txt",stringsAsFactors = F,header=T,sep="\t") 
+allmodels <-  read.delim("data/dr11.gene.ortholog.model.disease.score.txt", stringsAsFactors = F, header=T, sep="\t") 
 
-genesummary  <-  read.table("data/dr11.gene.summary.txt",stringsAsFactors = F,header=T,sep="\t")
+genesummary  <-  read.table("data/dr11.gene.summary.txt", stringsAsFactors = F, header=T, sep="\t")
 
 
 ######################################################################################################################
@@ -71,7 +71,7 @@ ui <- fluidPage(
     mainPanel(
       
       DT::dataTableOutput("table"),
-      sankeyNetworkOutput("plot",width = "100%", height = "200%")
+      sankeyNetworkOutput("plot", width = "100%", height = "200%")
       
       
     )
@@ -88,24 +88,24 @@ server <- function(input, output) {
   filtered_title_type <- reactive({
     if (input$dataset == "Mouse models disease table" &
         input$dataset2 == "PhenoDigm match")  {
-      return( allmodels %>% filter (phenodigm_match=="Y"))
+      return( allmodels %>% filter (phenodigm_match == "Y"))
     }
     
     if (input$dataset == "Mouse models disease table" &
         input$dataset2 == "No PhenoDigm match")  {
-      return(allmodels %>% filter (phenodigm_match=="N"))
+      return(allmodels %>% filter (phenodigm_match == "N"))
     }
     
     
     if (input$dataset == "Gene summary table" &
         input$dataset2 == "PhenoDigm match")  {
-      return(genesummary %>% filter (any_phenodigm_match=="Y"))
+      return(genesummary %>% filter (any_phenodigm_match == "Y"))
     }
     
     
     if (input$dataset == "Gene summary table" &
         input$dataset2 == "No PhenoDigm match")  {
-      return(genesummary %>% filter (any_phenodigm_match=="N"))
+      return(genesummary %>% filter (any_phenodigm_match == "N"))
     }
     
   })
@@ -127,22 +127,22 @@ server <- function(input, output) {
       return()
     
     
-    links = data.frame(source=c("Disease genes (1,706)","Disease genes (1,706)", "HPO annotations (1,590)", 
+    links = data.frame(source=c("Disease genes (1,706)", "Disease genes (1,706)", "HPO annotations (1,590)", 
                                "HPO annotations (1,590)"), 
-                      target=c("No HPO annotations (116)","HPO annotations (1,590)","PhenoDigm match (715)",
+                      target=c("No HPO annotations (116)", "HPO annotations (1,590)","PhenoDigm match (715)",
                                "No PhenoDigm match (875)"), 
-                      value=c(116,1590,715,875))
+                      value=c(116, 1590, 715, 875))
     
     nodes = data.frame(name=c(as.character(links$source), as.character(links$target)) %>% unique())
     links$IDsource = match(links$source, nodes$name)-1 
     links$IDtarget = match(links$target, nodes$name)-1
     
-    nodes$group = factor(nodes$name,levels = c("Disease genes (1,706)","No HPO annotations (116)",
+    nodes$group = factor(nodes$name,levels = c("Disease genes (1,706)", "No HPO annotations (116)",
                                                "HPO annotations (1,590)",
-                                               "PhenoDigm match (715)","No PhenoDigm match (875)"))
-    nodes$name = factor(nodes$name,levels = c("Disease genes (1,706)","No HPO annotations (116)",
+                                               "PhenoDigm match (715)", "No PhenoDigm match (875)"))
+    nodes$name = factor(nodes$name,levels = c("Disease genes (1,706)", "No HPO annotations (116)",
                                               "HPO annotations (1,590)",
-                                              "PhenoDigm match (715)","No PhenoDigm match (875)"))
+                                              "PhenoDigm match (715)", "No PhenoDigm match (875)"))
     
     links$group = as.factor(c("my_unique_group"))
     
@@ -154,10 +154,10 @@ server <- function(input, output) {
     
     sankeyNetwork(Links = links, Nodes = nodes, Source = "IDsource", Target = "IDtarget", 
                   Value = "value", NodeID = "name", 
-                  colourScale=my.color.connections, nodePadding = 15,
-                  LinkGroup="group", NodeGroup="group",
-                  fontSize=10,fontFamily = "Arial",
-                  nodeWidth = 50,sinksRight=FALSE)
+                  colourScale = my.color.connections, nodePadding = 15,
+                  LinkGroup = "group", NodeGroup = "group",
+                  fontSize = 10, fontFamily = "Arial",
+                  nodeWidth = 50, sinksRight = FALSE)
     
   })
   
@@ -166,7 +166,7 @@ server <- function(input, output) {
   
   output$downloadData <- downloadHandler(
     filename = function() {
-      paste(input$dataset,"-",input$dataset2, ".csv", sep = "")
+      paste(input$dataset, "-", input$dataset2, ".csv", sep = "")
     },
     content = function(file) {
       write.csv(filtered_title_type(), file, row.names = FALSE)
